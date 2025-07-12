@@ -1,9 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import { Filter, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Skill } from '../../types';
 
-// Mock components - replace with your actual implementations
-const SearchBar = ({ value, onChange, placeholder }: any) => (
+interface SearchBarProps {
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, placeholder }) => (
   <input
     type="text"
     value={value}
@@ -13,7 +19,14 @@ const SearchBar = ({ value, onChange, placeholder }: any) => (
   />
 );
 
-const Button = ({ children, variant = 'primary', onClick, className = '' }: any) => (
+interface ButtonProps {
+  children: React.ReactNode;
+  variant?: 'primary' | 'outline';
+  onClick?: () => void;
+  className?: string;
+}
+
+const Button: React.FC<ButtonProps> = ({ children, variant = 'primary', onClick, className = '' }) => (
   <button
     onClick={onClick}
     className={`px-4 py-2 rounded-lg font-medium transition-colors ${
@@ -26,7 +39,13 @@ const Button = ({ children, variant = 'primary', onClick, className = '' }: any)
   </button>
 );
 
-const SkillCard = ({ skill, onViewDetails, onRequestSwap }: any) => (
+interface SkillCardProps {
+  skill: Skill;
+  onViewDetails: (skill: Skill) => void;
+  onRequestSwap: (skill: Skill) => void;
+}
+
+const SkillCard: React.FC<SkillCardProps> = ({ skill, onViewDetails, onRequestSwap }) => (
   <div className="bg-gray-900 rounded-lg p-6 border border-gray-800 hover:border-purple-600 transition-colors">
     <h3 className="text-xl font-bold text-white mb-2">{skill.name}</h3>
     <p className="text-gray-400 mb-4">{skill.description}</p>
@@ -43,7 +62,13 @@ const SkillCard = ({ skill, onViewDetails, onRequestSwap }: any) => (
   </div>
 );
 
-const Pagination = ({ currentPage, totalPages, onPageChange }: any) => (
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
+
+const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => (
   <div className="flex justify-center gap-2 mt-8">
     {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
       <button
@@ -156,11 +181,11 @@ export const BrowseSkillsPage: React.FC = () => {
     setCurrentPage(1);
   };
 
-  const handleViewDetails = (skill: any) => {
+  const handleViewDetails = (skill: Skill) => {
     console.log('View details for skill:', skill.id);
   };
 
-  const handleRequestSwap = (skill: any) => {
+  const handleRequestSwap = (skill: Skill) => {
     console.log('Request swap for skill:', skill.id);
   };
 

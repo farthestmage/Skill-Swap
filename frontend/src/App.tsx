@@ -11,7 +11,7 @@ import { AdminDashboardPage } from './pages/AdminDashboardPage';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-black text-white">
+      <div className="bg-black min-h-screen text-white">
         <Header />
         <main>
           <Routes>
@@ -21,6 +21,8 @@ function App() {
             <Route path="/swaps" element={<SwapRequestsPage />} />
             <Route path="/skill/:id" element={<SkillDetailsPage />} />
             <Route path="/admin" element={<AdminDashboardPage />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
           </Routes>
         </main>
         <Footer />

@@ -4,7 +4,8 @@
   "description": "IOT Trial",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "lint": "eslint ."
   },
   "author": "Mohit Davar",
   "license": "MIT",

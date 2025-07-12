@@ -36,15 +36,19 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
 //Different Routes
-const authenticateToken = require("./middleware/authenticateToken.js");
+
 const auth = require("./routes/auth.route.js");
 app.use("/auth", auth);
 const constants = require("./routes/constants.route.js");
 app.use("/api/constants", constants);
 const users = require("./routes/users.route.js");
-app.use("/api/user", users);
-const reviews = require("./routes/reviews.route.js");
-app.use("/api/reviews", reviews);
+app.use("/api/users", users);
+const requests = require("./routes/requests.route.js");
+app.use("/api/request", requests);
+const personal = require("./routes/personal.route.js");
+app.use("/api/personal", personal);
+const review = require("./routes/reviews.route.js");
+app.use("/api/review", review);
 
 //Connecting the Database
 const client = require("./service/db.js");

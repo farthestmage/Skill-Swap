@@ -67,6 +67,15 @@ const getUserById = async (userId) => {
     return result.rows[0];
 };
 
+const getUserByEmail = async (userEmail) => {
+    const result = await client.query(`
+    SELECT u.id,
+    FROM users u
+    WHERE u.email = $1
+`, [userEmail]);
+    return result.rows[0];
+};
+
 const createUser = async (email, name, password) => {
     const userResult = await client.query(
         `INSERT INTO users (email, name, password)
@@ -128,6 +137,7 @@ const updateUser = async (userId, profileData) => {
 module.exports = {
     getAllUsers,
     getUserById,
+    getUserByEmail,
     createUser,
     deleteUser,
     updateUser

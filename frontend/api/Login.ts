@@ -1,10 +1,29 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
-export const userLogin = async ({ password, email }) => {
+export interface UserLoginParams {
+    email: string;
+    password: string;
+}
+
+export interface UserLoginResponse {
+    accessToken: string;
+}
+
+export const userLogin = async ({
+    email,
+    password,
+}: UserLoginParams): Promise<UserLoginResponse> => {
     try {
-        const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, { password, email }, { withCredentials: true });
+        const { data } = await axios.post<UserLoginResponse>(
+            `${import.meta.env.VITE_BASE_URL}/auth/login`,
+            { email, password },
+            { withCredentials: true }
+        );
         return data;
     } catch (error) {
-        throw new Error(error.response?.data?.message || "Internal server error duirng login!");
+        const err = error as AxiosError<{ message?: string }>;
+        throw new Error(
+            err.response?.data?.message || 'Internal server error during login!'
+        );
     }
 };
