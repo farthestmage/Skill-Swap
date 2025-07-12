@@ -1,5 +1,3 @@
-DATABASE_URL="postgresql://neondb_owner:npg_0SMBoCGTj6lb@ep-hidden-queen-a1zpbk6h-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
-JWT_SECRET="ulala"
 
 import psycopg2
 import jwt
@@ -38,7 +36,7 @@ def create_users_json():
 
 
     for row in rows:
-        print(row)
+       
         user_id = row[0]
         skills_offered = row[1] if row[1] else []
         skills_wanted = row[2] if row[2] else []
