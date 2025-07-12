@@ -1,18 +1,10 @@
-const express = require("express");
-const { userSignup, verifyOTP, userLogin, refreshToken, userLogout, resendOTP } = require("../controllers/users.controller");
+const express = require('express');
 const router = express.Router();
+const userController = require('../controllers/users.controller');
 
-router.route("/signup")
-    .post(userSignup);
-router.route("/verify-otp")
-    .post(verifyOTP);
-router.route("/login")
-    .post(userLogin);
-router.route("/refresh")
-    .post(refreshToken);
-router.route("/logout")
-    .post(userLogout);
-router.route("/resend-otp")
-    .post(resendOTP);
+router.get('/', userController.getAllUsers);
+router.get('/:id', userController.getUserById);
+router.delete('/:id', userController.deleteUser);
+router.put('/:id', userController.updateUser);
 
 module.exports = router;

@@ -37,16 +37,12 @@ app.use(cookieParser());
 
 //Different Routes
 const authenticateToken = require("./middleware/authenticateToken.js");
-const devices = require("./routes/devices.route.js");
-app.use("/devices", authenticateToken, devices);
-const templates = require("./routes/templates.route.js");
-app.use("/templates", authenticateToken, templates);
-const deviceDashboard = require("./routes/device-dashboards.route.js");
-app.use("/device-dashboards", deviceDashboard);
-const users = require("./routes/users.route.js");
-app.use("/users", users);
+const auth = require("./routes/auth.route.js");
+app.use("/auth", auth);
 const constants = require("./routes/constants.route.js");
-app.use("/constants", constants);
+app.use("/api/constants", constants);
+const users = require("./routes/users.route.js");
+app.use("/api/user", users);
 
 //Connecting the Database
 const client = require("./service/db.js");
@@ -65,4 +61,3 @@ client
 //Starting the server
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => console.log(`Server Started at ${PORT}`));
-

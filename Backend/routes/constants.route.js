@@ -1,10 +1,7 @@
 const express = require("express");
-const { getUnits, getWidgets } = require("../controllers/constants.controller");
+const constants = require("../controllers/constants.controller");
 const router = express.Router();
 
-router.route("/units")
-    .get(getUnits);
-router.route("/widgets")
-    .get(getWidgets);
+router.get('/skills', constants.getAllSkills);
 
 module.exports = router;

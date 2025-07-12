@@ -1,0 +1,7 @@
+Swap Requests
+
+GET /api/swap-requests - Get all swap requests GET /api/swap-requests/user/:id - Get user's requests POST /api/swap-requests - Create swap request PUT /api/swap-requests/:id - Update request status DELETE /api/swap-requests/:id - Cancel request
+
+Ratings
+
+GET /api/ratings/user/:id - Get user ratings POST /api/ratings - Create rating PUT /api/ratings/:id - Update rating
