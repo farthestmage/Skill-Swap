@@ -1,0 +1,40 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+pip-wheel-metadata/
+*.egg-info/
+
+# VS Code
+.vscode/
+.history/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# macOS / Linux / Windows junk files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python test output
+htmlcov/
+.tox/
+.nox/
+.coverage
+.cache
+.pytest_cache/
+coverage.xml
+nosetests.xml
+test-results.xml
+
+# Logs
+*.log
+logs/
+lo
