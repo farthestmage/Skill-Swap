@@ -26,6 +26,7 @@ const Button = ({ children, variant = 'primary', onClick, className = '' }: any)
   </button>
 );
 
+
 const SkillCard = ({ skill, onViewDetails, onRequestSwap }: any) => (
   <div className="bg-gray-900 rounded-lg p-6 border border-gray-800 hover:border-purple-600 transition-colors">
     <h3 className="text-xl font-bold text-white mb-2">{skill.name}</h3>
@@ -161,7 +162,7 @@ export const BrowseSkillsPage: React.FC = () => {
   };
 
   const handleRequestSwap = (skill: any) => {
-    console.log('Request swap for skill:', skill.id);
+    window.open(`https://cal.com/mudit1/30min`, "_blank");
   };
 
   return (
