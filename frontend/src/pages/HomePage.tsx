@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Users, Star, Zap, Shield } from 'lucide-react';
+import { Users, Star, Zap, Shield } from 'lucide-react';
 import { Button } from '../components/common/Button';
 import { SkillCard } from '../components/common/SkillCard';
 import { mockSkills } from '../data/mockData';
+import { ColourfulText } from '../components/ui/colorful-text';
+import { HovermeButton } from '../components/ui/hoverMe';
+import { motion } from 'motion/react';
 
 export const HomePage: React.FC = () => {
   const featuredSkills = mockSkills.slice(0, 3);
@@ -24,7 +27,7 @@ export const HomePage: React.FC = () => {
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Exchange Skills,
               <br />
-              <span className="text-gray-400">Unlock Potential</span>
+              <ColourfulText text="Learn Together" />
             </h1>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
               Connect with a community of learners and teachers. Share what you know, 
@@ -32,10 +35,7 @@ export const HomePage: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/browse">
-                <Button size="lg" className="px-8 py-4 text-lg">
-                  Browse Skills
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+              <HovermeButton text="Browse Skills" />
               </Link>
               <Button variant="outline" size="lg" className="px-8 py-4 text-lg">
                 How It Works
@@ -68,35 +68,74 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* Featured Skills */}
-      <section className="py-16 border-t border-gray-800">
+ <section className="py-16 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
               Featured Skills
             </h2>
             <p className="text-xl text-gray-400">
               Discover popular skills from our community
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {featuredSkills.map((skill) => (
-              <SkillCard
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+          >
+            {featuredSkills.map((skill, index) => (
+              <motion.div
                 key={skill.id}
-                skill={skill}
-                onViewDetails={() => {}}
-                onRequestSwap={() => {}}
-              />
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.1,
+                  ease: "easeOut"
+                }}
+                whileHover={{ 
+                  y: -8,
+                  transition: { duration: 0.2 }
+                }}
+              >
+                <SkillCard
+                  skill={skill}
+                  onViewDetails={() => {}}
+                  onRequestSwap={() => {}}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="text-center"
+          >
             <Link to="/browse">
-              <Button variant="outline" size="lg">
-                View All Skills
-              </Button>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Button variant="outline" size="lg">
+                  View All Skills
+                </Button>
+              </motion.div>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
