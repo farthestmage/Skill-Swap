@@ -43,6 +43,8 @@ const constants = require("./routes/constants.route.js");
 app.use("/api/constants", constants);
 const users = require("./routes/users.route.js");
 app.use("/api/user", users);
+const reviews = require("./routes/reviews.route.js");
+app.use("/api/reviews", reviews);
 
 //Connecting the Database
 const client = require("./service/db.js");
