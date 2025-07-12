@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import json
 import os
 from process_query import process_query
+from database import create_users_json
 app = Flask(__name__)
 FILE_NAME = 'output.json'
 
@@ -85,4 +86,4 @@ def recommend():
         return jsonify({"error": "Something went wrong", "details": str(e)}), 500
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
-    
+    create_users_json()  # Ensure users.json is created on startup
