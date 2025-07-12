@@ -15,7 +15,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, placeholder }) =
     value={value}
     onChange={(e) => onChange(e.target.value)}
     placeholder={placeholder}
-    className="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+    className="bg-gray-800 px-4 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 w-full text-white"
   />
 );
 
@@ -39,21 +39,16 @@ const Button: React.FC<ButtonProps> = ({ children, variant = 'primary', onClick,
   </button>
 );
 
-interface SkillCardProps {
-  skill: Skill;
-  onViewDetails: (skill: Skill) => void;
-  onRequestSwap: (skill: Skill) => void;
-}
 
-const SkillCard: React.FC<SkillCardProps> = ({ skill, onViewDetails, onRequestSwap }) => (
-  <div className="bg-gray-900 rounded-lg p-6 border border-gray-800 hover:border-purple-600 transition-colors">
-    <h3 className="text-xl font-bold text-white mb-2">{skill.name}</h3>
-    <p className="text-gray-400 mb-4">{skill.description}</p>
-    <p className="text-gray-400 mb-4">{}</p>
+const SkillCard = ({ skill, onViewDetails, onRequestSwap }: any) => (
+  <div className="bg-gray-900 p-6 border border-gray-800 hover:border-purple-600 rounded-lg transition-colors">
+    <h3 className="mb-2 font-bold text-white text-xl">{skill.name}</h3>
+    <p className="mb-4 text-gray-400">{skill.description}</p>
+    <p className="mb-4 text-gray-400">{}</p>
     <div className="flex gap-2 mb-4">
-      <span className="px-2 py-1 bg-purple-600/20 text-purple-400 rounded text-sm">{skill.category}</span>
-      <span className="px-2 py-1 bg-blue-600/20 text-blue-400 rounded text-sm">{skill.proficiency}</span>
-      <span className="px-2 py-1 bg-purple-600/20 text-purple-400 rounded text-sm">{skill.availability}</span>
+      <span className="bg-purple-600/20 px-2 py-1 rounded text-purple-400 text-sm">{skill.category}</span>
+      <span className="bg-blue-600/20 px-2 py-1 rounded text-blue-400 text-sm">{skill.proficiency}</span>
+      <span className="bg-purple-600/20 px-2 py-1 rounded text-purple-400 text-sm">{skill.availability}</span>
     </div>
     <div className="flex gap-2">
       <Button variant="outline" onClick={() => onViewDetails(skill)}>View</Button>
@@ -185,20 +180,20 @@ export const BrowseSkillsPage: React.FC = () => {
     console.log('View details for skill:', skill.id);
   };
 
-  const handleRequestSwap = (skill: Skill) => {
-    console.log('Request swap for skill:', skill.id);
+  const handleRequestSwap = (skill: any) => {
+    window.open(`https://cal.com/mudit1/30min`, "_blank");
   };
 
   return (
-    <div className="min-h-screen bg-black py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="bg-black py-8 min-h-screen">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+          <h1 className="mb-4 font-bold text-white text-3xl lg:text-4xl">
             Browse Skills
           </h1>
           <p className="text-gray-400 text-lg">
@@ -211,9 +206,9 @@ export const BrowseSkillsPage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-gray-900 rounded-lg p-6 mb-8 border border-gray-800"
+          className="bg-gray-900 mb-8 p-6 border border-gray-800 rounded-lg"
         >
-          <div className="flex flex-col lg:flex-row gap-4">
+          <div className="flex lg:flex-row flex-col gap-4">
             <div className="flex-1">
               <SearchBar
                 value={searchTerm}
@@ -229,7 +224,7 @@ export const BrowseSkillsPage: React.FC = () => {
                   animate={{ scale: 1 }}
                   className="flex items-center"
                 >
-                  <span className="px-3 py-1 bg-purple-600/20 text-purple-400 rounded-full text-sm mr-2">
+                  <span className="bg-purple-600/20 mr-2 px-3 py-1 rounded-full text-purple-400 text-sm">
                     {activeFiltersCount} active
                   </span>
                 </motion.div>
@@ -239,7 +234,7 @@ export const BrowseSkillsPage: React.FC = () => {
                 onClick={() => setShowFilters(!showFilters)}
                 className="lg:hidden"
               >
-                <Filter className="h-4 w-4 mr-2" />
+                <Filter className="mr-2 w-4 h-4" />
                 Filters
               </Button>
             </div>
@@ -255,15 +250,15 @@ export const BrowseSkillsPage: React.FC = () => {
                 transition={{ duration: 0.3 }}
                 className={`mt-6 overflow-hidden ${showFilters ? 'block' : 'hidden'} lg:block`}
               >
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="gap-4 grid grid-cols-1 md:grid-cols-3">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block mb-2 font-medium text-gray-300 text-sm">
                       Category
                     </label>
                     <select
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="bg-gray-800 px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 w-full text-white"
                     >
                       {skillCategories.map(category => (
                         <option key={category} value={category}>
@@ -274,13 +269,13 @@ export const BrowseSkillsPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block mb-2 font-medium text-gray-300 text-sm">
                       Proficiency
                     </label>
                     <select 
                       value={selectedProficiency}
                       onChange={(e) => setSelectedProficiency(e.target.value)}
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="bg-gray-800 px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 w-full text-white"
                     >
                       <option value="">All Levels</option>
                       <option value="Beginner">Beginner</option>
@@ -290,13 +285,13 @@ export const BrowseSkillsPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block mb-2 font-medium text-gray-300 text-sm">
                       Availability
                     </label>
                     <select 
                       value={selectedAvailability}
                       onChange={(e) => setSelectedAvailability(e.target.value)}
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="bg-gray-800 px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 w-full text-white"
                     >
                       <option value="">Any Time</option>
                       <option value="weekends">Weekends</option>
@@ -310,14 +305,14 @@ export const BrowseSkillsPage: React.FC = () => {
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="mt-4 flex justify-end"
+                    className="flex justify-end mt-4"
                   >
                     <Button
                       variant="outline"
                       onClick={handleClearFilters}
                       className="text-sm"
                     >
-                      <X className="h-4 w-4 mr-1" />
+                      <X className="mr-1 w-4 h-4" />
                       Clear All Filters
                     </Button>
                   </motion.div>
@@ -328,9 +323,9 @@ export const BrowseSkillsPage: React.FC = () => {
         </motion.div>
 
         {/* Results Summary */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex justify-between items-center mb-6">
           <p className="text-gray-400">
-            Found <span className="text-white font-semibold">{filteredSkills.length}</span> skills
+            Found <span className="font-semibold text-white">{filteredSkills.length}</span> skills
             {searchTerm && ` for "${searchTerm}"`}
             {selectedCategory !== 'All Categories' && ` in ${selectedCategory}`}
           </p>
@@ -338,7 +333,7 @@ export const BrowseSkillsPage: React.FC = () => {
           <select 
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="bg-gray-800 px-3 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white text-sm"
           >
             <option value="relevance">Sort by Relevance</option>
             <option value="newest">Newest First</option>
@@ -356,7 +351,7 @@ export const BrowseSkillsPage: React.FC = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {displayedSkills.map((skill, index) => (
                   <motion.div
                     key={skill.id}
@@ -387,13 +382,13 @@ export const BrowseSkillsPage: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="text-center py-16"
+              className="py-16 text-center"
             >
-              <div className="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Filter className="h-12 w-12 text-gray-400" />
+              <div className="flex justify-center items-center bg-gray-800 mx-auto mb-6 rounded-full w-24 h-24">
+                <Filter className="w-12 h-12 text-gray-400" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">No skills found</h3>
-              <p className="text-gray-400 mb-6">
+              <h3 className="mb-2 font-semibold text-white text-xl">No skills found</h3>
+              <p className="mb-6 text-gray-400">
                 Try adjusting your search criteria or browse all categories.
               </p>
               <Button
