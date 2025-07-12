@@ -1,4 +1,4 @@
-DATABASE_URL = #your url here
+DATABASE_URL = "#your url here"
 import psycopg2
 import jwt
 import os
