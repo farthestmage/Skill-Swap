@@ -7,6 +7,9 @@ import { UserProfilePage } from './pages/UserProfilePage';
 import { SwapRequestsPage } from './pages/SwapRequestsPage';
 import { SkillDetailsPage } from './pages/SkillDetailsPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
+import LoginForm from './pages/Login';
+import SignUpForm from './pages/SignUp';
+import CreateRequestForm from './pages/CreateRequest';
 
 function App() {
   return (
@@ -21,8 +24,9 @@ function App() {
             <Route path="/swaps" element={<SwapRequestsPage />} />
             <Route path="/skill/:id" element={<SkillDetailsPage />} />
             <Route path="/admin" element={<AdminDashboardPage />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/signup' element={<Signup />} />
+            <Route path='/login' element={<LoginForm />} />
+            <Route path='/signup' element={<SignUpForm />} />
+            <Route path='/createRequest' element={<CreateRequestForm />} />
           </Routes>
         </main>
         <Footer />

@@ -19,28 +19,28 @@ export const Header: React.FC = () => {
   ];
 
   return (
-    <motion.header 
+    <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="bg-black/95 backdrop-blur-md border-b border-gray-800/50 sticky top-0 z-50"
+      className="top-0 z-50 sticky bg-black/95 backdrop-blur-md border-gray-800/50 border-b"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link 
+          <Link
             to="/"
-            className="flex items-center gap-2 group"
+            className="group flex items-center gap-2"
           >
-            <motion.div 
+            <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.5 }}
-              className="w-8 h-8 bg-gradient-to-br from-white to-gray-300 rounded-lg flex items-center justify-center shadow-lg"
+              className="flex justify-center items-center bg-gradient-to-br from-white to-gray-300 shadow-lg rounded-lg w-8 h-8"
             >
-              <Users className="h-5 w-5 text-black" />
+              <Users className="w-5 h-5 text-black" />
             </motion.div>
-            <motion.span 
-              className="text-xl font-bold text-white"
+            <motion.span
+              className="font-bold text-white text-xl"
               whileHover={{ scale: 1.05 }}
             >
               SkillSwap
@@ -60,14 +60,13 @@ export const Header: React.FC = () => {
                 >
                   <Link
                     to={item.path}
-                    className="relative group"
+                    className="group relative"
                   >
                     <motion.div
-                      className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                        isActive(item.path)
-                          ? 'text-white'
-                          : 'text-gray-400 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${isActive(item.path)
+                        ? 'text-white'
+                        : 'text-gray-400 hover:text-white'
+                        }`}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -76,23 +75,23 @@ export const Header: React.FC = () => {
                           animate={isActive(item.path) ? { rotate: 360 } : {}}
                           transition={{ duration: 0.5 }}
                         >
-                          <Icon className="h-4 w-4" />
+                          <Icon className="w-4 h-4" />
                         </motion.div>
                       )}
                       {item.label}
-                      
+
                       {/* Active indicator */}
                       {isActive(item.path) && (
                         <motion.div
                           layoutId="navbar-indicator"
-                          className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-lg -z-10"
+                          className="-z-10 absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-lg"
                           transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                         />
                       )}
-                      
+
                       {/* Hover effect */}
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-blue-600/10 rounded-lg -z-10 opacity-0 group-hover:opacity-100"
+                        className="-z-10 absolute inset-0 bg-gradient-to-r from-purple-600/10 to-blue-600/10 opacity-0 group-hover:opacity-100 rounded-lg"
                         transition={{ duration: 0.2 }}
                       />
                     </motion.div>
@@ -103,17 +102,21 @@ export const Header: React.FC = () => {
           </nav>
 
           {/* Auth Buttons */}
-          <motion.div 
+          <motion.div
             className="hidden md:flex items-center gap-3"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <SpotlightButton text='Login' />
+              <Link to="/login">
+                <SpotlightButton text='Login' />
+              </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <SpotlightButton text='Sign Up' />
+              <Link to="signup">
+                <SpotlightButton text='Sign Up' />
+              </Link>
             </motion.div>
           </motion.div>
 
@@ -121,7 +124,7 @@ export const Header: React.FC = () => {
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg bg-gray-800/50 text-white hover:bg-gray-700/50 transition-colors"
+            className="md:hidden bg-gray-800/50 hover:bg-gray-700/50 p-2 rounded-lg text-white transition-colors"
           >
             <AnimatePresence mode="wait">
               {isMobileMenuOpen ? (
@@ -132,7 +135,7 @@ export const Header: React.FC = () => {
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <X className="h-6 w-6" />
+                  <X className="w-6 h-6" />
                 </motion.div>
               ) : (
                 <motion.div
@@ -142,7 +145,7 @@ export const Header: React.FC = () => {
                   exit={{ rotate: -90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Menu className="h-6 w-6" />
+                  <Menu className="w-6 h-6" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -159,7 +162,7 @@ export const Header: React.FC = () => {
               transition={{ duration: 0.3 }}
               className="md:hidden overflow-hidden"
             >
-              <motion.div className="py-4 space-y-2">
+              <motion.div className="space-y-2 py-4">
                 {navItems.map((item, index) => {
                   const Icon = item.icon;
                   return (
@@ -173,18 +176,17 @@ export const Header: React.FC = () => {
                       <Link
                         to={item.path}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
-                          isActive(item.path)
-                            ? 'bg-gradient-to-r from-purple-600/20 to-blue-600/20 text-white'
-                            : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
-                        }`}
+                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${isActive(item.path)
+                          ? 'bg-gradient-to-r from-purple-600/20 to-blue-600/20 text-white'
+                          : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                          }`}
                       >
                         {Icon && (
                           <motion.div
                             animate={isActive(item.path) ? { rotate: 360 } : {}}
                             transition={{ duration: 0.5 }}
                           >
-                            <Icon className="h-5 w-5" />
+                            <Icon className="w-5 h-5" />
                           </motion.div>
                         )}
                         <span>{item.label}</span>
@@ -192,17 +194,17 @@ export const Header: React.FC = () => {
                           <motion.div
                             initial={{ width: 0 }}
                             animate={{ width: "3px" }}
-                            className="absolute left-0 top-0 bottom-0 bg-gradient-to-b from-purple-500 to-blue-500 rounded-r"
+                            className="top-0 bottom-0 left-0 absolute bg-gradient-to-b from-purple-500 to-blue-500 rounded-r"
                           />
                         )}
                       </Link>
                     </motion.div>
                   );
                 })}
-                
+
                 {/* Mobile Auth Buttons */}
-                <motion.div 
-                  className="pt-4 border-t border-gray-800/50 space-y-2"
+                <motion.div
+                  className="space-y-2 pt-4 border-gray-800/50 border-t"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -223,7 +225,7 @@ export const Header: React.FC = () => {
       {/* Floating orbs background effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute -top-20 -left-20 w-40 h-40 bg-purple-600/10 rounded-full blur-3xl"
+          className="-top-20 -left-20 absolute bg-purple-600/10 blur-3xl rounded-full w-40 h-40"
           animate={{
             x: [0, 50, 0],
             y: [0, 30, 0],
@@ -235,7 +237,7 @@ export const Header: React.FC = () => {
           }}
         />
         <motion.div
-          className="absolute -top-20 -right-20 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl"
+          className="-top-20 -right-20 absolute bg-blue-600/10 blur-3xl rounded-full w-40 h-40"
           animate={{
             x: [0, -50, 0],
             y: [0, 30, 0],
